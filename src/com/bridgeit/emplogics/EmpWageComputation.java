@@ -9,7 +9,8 @@ public class EmpWageComputation {
 	public static final int WORKING_DAYS_IN_MONTH = 20;
 	public static final int EMP_WAGE_PER_HOUR = 20;
 
-	public static int empWageComputation() {
+	public static void empWageComputation(String name, int totalWorkingHrsInMonth, int workingDaysInMonth,
+			int empWagePerHour) {
 		int totalEmpWagePerDay = 0, totalMontlyWageOfEmp = 0, totalNoOfHrsWorked = 0, totalNoOfDaysWorked = 0;
 
 		int is_fullTimeWorkingHrs = 8, is_partTimeWorkingHrs = 4;
@@ -37,11 +38,12 @@ public class EmpWageComputation {
 					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
 			}
 		}
-		return totalMontlyWageOfEmp;
+		System.out.println("company name : " + name + " \n total employee wage " + totalMontlyWageOfEmp);
 	}
 
 	public static void main(String[] args) {
-		int totalMontlyWageOfEmp = empWageComputation();
-		System.out.println("total montly wage of an emp is : " + totalMontlyWageOfEmp);
+		empWageComputation("jio", 100, 20, 25);
+		empWageComputation("Dmart", 80, 24, 25);
+		empWageComputation("bigB", 90, 28, 30);
 	}
 }
