@@ -7,10 +7,24 @@ public class EmpWageComputation {
 	public static final int IS_PART_TIME = 2;
 	public static final int FULL_TIME_WORKING_HRS = 8;
 	public static final int PART_TIME_WORKING_HRS = 4;
-
-	public static void empWageComputation(String name, int totalWorkingHrsInMonth, int workingDaysInMonth,
+	
+	private final  String companyName;
+	private final int totalWorkingHrsInMonth;
+	private final int workingDaysInMonth;
+	private final int empWagePerHour;
+	private int totalMontlyWageOfEmp;
+	
+	public EmpWageComputation(String companyName, int totalWorkingHrsInMonth, int workingDaysInMonth,
 			int empWagePerHour) {
-		int totalEmpWagePerDay = 0, totalMontlyWageOfEmp = 0, totalNoOfHrsWorked = 0, totalNoOfDaysWorked = 0;
+		this.companyName = companyName;
+		this.totalWorkingHrsInMonth = totalWorkingHrsInMonth;
+		this.workingDaysInMonth = workingDaysInMonth;
+		this.empWagePerHour = empWagePerHour;
+	}
+
+	public void empWageComputation() {
+		
+		int totalEmpWagePerDay = 0, totalNoOfHrsWorked = 0, totalNoOfDaysWorked = 0;
 
 		while (totalNoOfDaysWorked <= workingDaysInMonth && totalNoOfHrsWorked <= totalWorkingHrsInMonth) {
 
@@ -35,12 +49,22 @@ public class EmpWageComputation {
 					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
 			}
 		}
-		System.out.println("company name : " + name + " \n total employee wage " + totalMontlyWageOfEmp);
+	}
+
+	@Override
+	public String toString() {
+		return "EmpWageComputation [companyName=" + companyName + ", totalEmpWage=" + totalMontlyWageOfEmp + "]";
 	}
 
 	public static void main(String[] args) {
-		empWageComputation("jio", 100, 20, 25);
-		empWageComputation("Dmart", 80, 24, 25);
-		empWageComputation("bigB", 90, 28, 30);
+		EmpWageComputation jio = new EmpWageComputation("jio",100,25,20);
+		EmpWageComputation dmart = new EmpWageComputation("dmart",80,25,20);
+		EmpWageComputation bigB = new EmpWageComputation("bigB",90,25,20);
+		jio.empWageComputation();
+		dmart.empWageComputation();
+		bigB.empWageComputation();
+		System.out.println(jio);
+		System.out.println(dmart);
+		System.out.println(bigB);
 	}
 }
