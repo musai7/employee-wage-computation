@@ -2,7 +2,7 @@ package com.bridgeit.emplogics;
 
 public class EmpWageComputation {
 	public static void main(String[] args) {
-		
+		//Daily Employee Wage Calculation
 		double empCheck = Math.floor(Math.random() * 10) % 2;
 		// constants
 		int is_present = 1, empWagePerHr = 20, is_fullTime = 8;
