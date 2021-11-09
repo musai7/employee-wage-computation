@@ -2,12 +2,16 @@ package com.bridgeit.emplogics;
 
 public class EmpWageComputation {
 	public static void main(String[] args) {
-		// employee present or absent logic
-		int is_Present = 1;
+		
 		double empCheck = Math.floor(Math.random() * 10) % 2;
-		if (empCheck == is_Present) {
-			System.out.println("employee is present");
+		// constants
+		int is_present = 1, empWagePerHr = 20, is_fullTime = 8;
+
+		int totalEmpWagePerDay = 0;
+		if (empCheck == is_present) {
+			totalEmpWagePerDay = is_fullTime * empWagePerHr;
+			System.out.println("employee is present and employee wage is : " + totalEmpWagePerDay);
 		} else
-			System.out.println("employee is abscent ");
+			System.out.println("employee is abscent and employee wage is : " + totalEmpWagePerDay);
 	}
 }
