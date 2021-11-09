@@ -5,31 +5,32 @@ public class EmpWageComputation {
 	public static final int IS_ABSCENT = 0;
 	public static final int IS_PRESENT = 1;
 	public static final int IS_PART_TIME = 2;
-	public static final int totalWorkingHrsInAMonth = 100;
-	public static final int workingDaysInAMonth = 20;
+	public static final int TOTAL_WORKING_HRS_IN_MONTH = 100;
+	public static final int WORKING_DAYS_IN_MONTH = 20;
+	public static final int EMP_WAGE_PER_HOUR = 20;
 
 	public static int empWageComputation() {
 		int totalEmpWagePerDay = 0, totalMontlyWageOfEmp = 0, totalNoOfHrsWorked = 0, totalNoOfDaysWorked = 0;
 
-		int empWagePerHr = 20, is_fullTimeWorkingHrs = 8, is_partTimeWorkingHrs = 4;
+		int is_fullTimeWorkingHrs = 8, is_partTimeWorkingHrs = 4;
 
-		while (totalNoOfDaysWorked <= workingDaysInAMonth && totalNoOfHrsWorked <= totalWorkingHrsInAMonth) {
+		while (totalNoOfDaysWorked <= WORKING_DAYS_IN_MONTH && totalNoOfHrsWorked <= TOTAL_WORKING_HRS_IN_MONTH) {
 
 			double empCheck = Math.floor(Math.random() * 10) % 3;
 
 			int empSwitchCheck = (int) empCheck;
 
 			switch (empSwitchCheck) {
-				case 1:
+				case IS_PRESENT:
 					totalNoOfHrsWorked = totalNoOfHrsWorked + is_fullTimeWorkingHrs;
 					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
-					totalEmpWagePerDay = is_fullTimeWorkingHrs * empWagePerHr;
+					totalEmpWagePerDay = is_fullTimeWorkingHrs * EMP_WAGE_PER_HOUR;
 					totalMontlyWageOfEmp = totalMontlyWageOfEmp + totalEmpWagePerDay;
 					break;
-				case 2:
+				case IS_PART_TIME:
 					totalNoOfHrsWorked = totalNoOfHrsWorked + is_fullTimeWorkingHrs;
 					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
-					totalEmpWagePerDay = is_partTimeWorkingHrs * empWagePerHr;
+					totalEmpWagePerDay = is_partTimeWorkingHrs * EMP_WAGE_PER_HOUR;
 					totalMontlyWageOfEmp = totalMontlyWageOfEmp + totalEmpWagePerDay;
 					break;
 				default:
