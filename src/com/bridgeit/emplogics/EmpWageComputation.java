@@ -7,64 +7,61 @@ public class EmpWageComputation {
 	public static final int IS_PART_TIME = 2;
 	public static final int FULL_TIME_WORKING_HRS = 8;
 	public static final int PART_TIME_WORKING_HRS = 4;
-	
-	private final  String companyName;
-	private final int totalWorkingHrsInMonth;
-	private final int workingDaysInMonth;
-	private final int empWagePerHour;
-	private int totalMontlyWageOfEmp;
-	
-	public EmpWageComputation(String companyName, int totalWorkingHrsInMonth, int workingDaysInMonth,
-			int empWagePerHour) {
-		this.companyName = companyName;
-		this.totalWorkingHrsInMonth = totalWorkingHrsInMonth;
-		this.workingDaysInMonth = workingDaysInMonth;
-		this.empWagePerHour = empWagePerHour;
+
+	private int numberOfCompanies = 0;
+	CompanyEmpWage companyEmpWage[];
+
+	public EmpWageComputation() {
+		companyEmpWage = new CompanyEmpWage[5];
+	}
+
+	public void addEmpWage(String companyName, int totalWorkingHrsInMonth, int workingDaysInMonth, int empWagePerHour) {
+		companyEmpWage[numberOfCompanies++] = new CompanyEmpWage(companyName, totalWorkingHrsInMonth,
+				workingDaysInMonth, empWagePerHour);
 	}
 
 	public void empWageComputation() {
-		
-		int totalEmpWagePerDay = 0, totalNoOfHrsWorked = 0, totalNoOfDaysWorked = 0;
-
-		while (totalNoOfDaysWorked <= workingDaysInMonth && totalNoOfHrsWorked <= totalWorkingHrsInMonth) {
-
-			double empCheck = Math.floor(Math.random() * 10) % 3;
-
-			int empSwitchCheck = (int) empCheck;
-
-			switch (empSwitchCheck) {
-				case IS_PRESENT:
-					totalNoOfHrsWorked = totalNoOfHrsWorked + FULL_TIME_WORKING_HRS;
-					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
-					totalEmpWagePerDay = FULL_TIME_WORKING_HRS * empWagePerHour;
-					totalMontlyWageOfEmp = totalMontlyWageOfEmp + totalEmpWagePerDay;
-					break;
-				case IS_PART_TIME:
-					totalNoOfHrsWorked = totalNoOfHrsWorked + PART_TIME_WORKING_HRS;
-					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
-					totalEmpWagePerDay = PART_TIME_WORKING_HRS * empWagePerHour;
-					totalMontlyWageOfEmp = totalMontlyWageOfEmp + totalEmpWagePerDay;
-					break;
-				default:
-					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
-			}
+		for(int i = 0;i < numberOfCompanies;i++) {
+			companyEmpWage[i].setTotalMontlyWageOfEmp(this.empWageComputation(companyEmpWage[i]));
+			System.out.println(companyEmpWage[i]);
 		}
+		
 	}
 
-	@Override
-	public String toString() {
-		return "EmpWageComputation [companyName=" + companyName + ", totalEmpWage=" + totalMontlyWageOfEmp + "]";
+	public int empWageComputation(CompanyEmpWage companyEmpWage) {
+
+		int totalEmpWagePerDay = 0, totalNoOfHrsWorked = 0, totalNoOfDaysWorked = 0;
+
+		while (totalNoOfDaysWorked <= companyEmpWage.getWorkingDaysInMonth()
+				&& totalNoOfHrsWorked <= companyEmpWage.getTotalWorkingHrsInMonth()) {
+
+			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+
+			switch (empCheck) {
+			case IS_PRESENT:
+				totalNoOfHrsWorked = totalNoOfHrsWorked + FULL_TIME_WORKING_HRS;
+				totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
+				totalEmpWagePerDay = FULL_TIME_WORKING_HRS * companyEmpWage.getEmpWagePerHour();
+				companyEmpWage.totalMontlyWageOfEmp = companyEmpWage.totalMontlyWageOfEmp + totalEmpWagePerDay;
+				break;
+			case IS_PART_TIME:
+				totalNoOfHrsWorked = totalNoOfHrsWorked + PART_TIME_WORKING_HRS;
+				totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
+				totalEmpWagePerDay = PART_TIME_WORKING_HRS * companyEmpWage.getEmpWagePerHour();
+				companyEmpWage.totalMontlyWageOfEmp = companyEmpWage.totalMontlyWageOfEmp + totalEmpWagePerDay;
+				break;
+			default:
+				totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
+			}
+		}
+		return companyEmpWage.totalMontlyWageOfEmp;
 	}
 
 	public static void main(String[] args) {
-		EmpWageComputation jio = new EmpWageComputation("jio",100,25,20);
-		EmpWageComputation dmart = new EmpWageComputation("dmart",80,25,20);
-		EmpWageComputation bigB = new EmpWageComputation("bigB",90,25,20);
-		jio.empWageComputation();
-		dmart.empWageComputation();
-		bigB.empWageComputation();
-		System.out.println(jio);
-		System.out.println(dmart);
-		System.out.println(bigB);
+		EmpWageComputation empWageComputation = new EmpWageComputation();
+		empWageComputation.addEmpWage("jio", 100, 20, 20);
+		empWageComputation.addEmpWage("BigB", 90, 20, 30);
+		empWageComputation.addEmpWage("reliance", 80, 25, 25);
+		empWageComputation.empWageComputation();
 	}
 }
