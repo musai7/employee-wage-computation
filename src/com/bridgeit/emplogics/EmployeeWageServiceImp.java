@@ -31,6 +31,17 @@ public class EmployeeWageServiceImp implements EmployeeWageService {
 			System.out.println(company);
 		}
 	}
+	
+	public void checkCompanyDetails(String name) {
+		
+		System.out.println(name);
+		for (int i = 0; i < companies.size(); i++) {
+			CompanyEmpWage company = companies.get(i);
+			if(company.getCompanyName().equals(name)) {
+				System.out.println(company);
+			}
+		}
+	}
 
 	public int empWageComputation(CompanyEmpWage companyEmpWage) {
 
@@ -42,20 +53,20 @@ public class EmployeeWageServiceImp implements EmployeeWageService {
 			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
 
 			switch (empCheck) {
-			case IS_PRESENT:
-				totalNoOfHrsWorked = totalNoOfHrsWorked + FULL_TIME_WORKING_HRS;
-				totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
-				totalEmpWagePerDay = FULL_TIME_WORKING_HRS * companyEmpWage.getEmpWagePerHour();
-				companyEmpWage.totalMontlyWageOfEmp = companyEmpWage.totalMontlyWageOfEmp + totalEmpWagePerDay;
-				break;
-			case IS_PART_TIME:
-				totalNoOfHrsWorked = totalNoOfHrsWorked + PART_TIME_WORKING_HRS;
-				totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
-				totalEmpWagePerDay = PART_TIME_WORKING_HRS * companyEmpWage.getEmpWagePerHour();
-				companyEmpWage.totalMontlyWageOfEmp = companyEmpWage.totalMontlyWageOfEmp + totalEmpWagePerDay;
-				break;
-			default:
-				totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
+				case IS_PRESENT:
+					totalNoOfHrsWorked = totalNoOfHrsWorked + FULL_TIME_WORKING_HRS;
+					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
+					totalEmpWagePerDay = FULL_TIME_WORKING_HRS * companyEmpWage.getEmpWagePerHour();
+					companyEmpWage.totalMontlyWageOfEmp = companyEmpWage.totalMontlyWageOfEmp + totalEmpWagePerDay;
+					break;
+				case IS_PART_TIME:
+					totalNoOfHrsWorked = totalNoOfHrsWorked + PART_TIME_WORKING_HRS;
+					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
+					totalEmpWagePerDay = PART_TIME_WORKING_HRS * companyEmpWage.getEmpWagePerHour();
+					companyEmpWage.totalMontlyWageOfEmp = companyEmpWage.totalMontlyWageOfEmp + totalEmpWagePerDay;
+					break;
+				default:
+					totalNoOfDaysWorked = totalNoOfDaysWorked + 1;
 			}
 		}
 		return companyEmpWage.totalMontlyWageOfEmp;

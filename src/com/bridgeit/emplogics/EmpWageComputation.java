@@ -1,5 +1,7 @@
 package com.bridgeit.emplogics;
 
+import java.util.Scanner;
+
 public class EmpWageComputation {
 
 	public static void main(String[] args) {
@@ -11,5 +13,9 @@ public class EmpWageComputation {
 		employeeWageService.addEmpWage(bigB);
 		employeeWageService.addEmpWage(reliance);
 		employeeWageService.empWageComputation();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("enter a company name to get emp wage ");
+		String name = scanner.next();
+		employeeWageService.checkCompanyDetails(name);
 	}
 }

@@ -1,5 +1,7 @@
 package com.bridgeit.emplogics;
 
+import java.util.List;
+
 public class CompanyEmpWage {
 
 	private final String companyName;
@@ -17,6 +19,10 @@ public class CompanyEmpWage {
 
 	public void setTotalMontlyWageOfEmp(int totalMontlyWageOfEmp) {
 		this.totalMontlyWageOfEmp = totalMontlyWageOfEmp;
+	} 
+
+	public String getCompanyName() {
+		return companyName;
 	}
 
 	@Override
