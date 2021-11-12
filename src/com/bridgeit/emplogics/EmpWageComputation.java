@@ -14,7 +14,7 @@ public class EmpWageComputation {
 		employeeWageService.addEmpWage(reliance);
 		employeeWageService.empWageComputation();
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("enter a company name");
+		System.out.println("enter a company name to get emp wage ");
 		String name = scanner.next();
 		employeeWageService.checkCompanyDetails(name);
 	}
